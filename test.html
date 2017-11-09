@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProgChel Test</title>
+</head>
+<body>
+
+<textarea id="input" style="width: 100vh;"></textarea>
+<button id="assemble">Assemble</button>
+<button id="disassemble">Disassemble (no workerinoes)</button>
+<textarea id="output" style="width: 100vh;"></textarea>
+
+<script src="dist/prgchl.js"></script>
+<script>
+    window.addEventListener("load", function () {
+        document.getElementById("assemble").addEventListener("click", function () {
+            let code = document.getElementById("input").value;
+            console.log(code);
+
+            Assembler.assemble(code, undefined, function (program) {
+                document.getElementById("output").value = new Program(program).toBase64();
+            }, function (error) {
+                alert(error);
+            })
+        });
+    })
+</script>
+</body>
+</html>
